@@ -1,0 +1,142 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API de Reservas Hoteleras",
+    "version": "1.0.0",
+    "description": "API para gestionar reservas de un hotel"
+  },
+  "paths": {
+    "/api/reservas": {
+      "post": {
+        "summary": "Crear una nueva reserva",
+        "operationId": "crearReserva",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reserva"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Reserva creada correctamente"
+          }
+        }
+      },
+      "get": {
+        "summary": "Obtener la lista de reservas",
+        "operationId": "obtenerReservas",
+        "responses": {
+          "200": {
+            "description": "Lista de reservas"
+          }
+        }
+      }
+    },
+    "/api/reservas/{id}": {
+      "get": {
+        "summary": "Obtener una reserva por ID",
+        "operationId": "obtenerReservaPorId",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva encontrada"
+          }
+        }
+      },
+      "put": {
+        "summary": "Actualizar una reserva",
+        "operationId": "actualizarReserva",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Reserva"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Reserva actualizada"
+          }
+        }
+      },
+      "delete": {
+        "summary": "Eliminar una reserva",
+        "operationId": "eliminarReserva",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Reserva eliminada"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Reserva": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "hotel": {
+            "type": "string"
+          },
+          "fecha_inicio": {
+            "type": "string",
+            "format": "date"
+          },
+          "fecha_fin": {
+            "type": "string",
+            "format": "date"
+          },
+          "tipo_habitacion": {
+            "type": "string"
+          },
+          "estado": {
+            "type": "string"
+          },
+          "num_huespedes": {
+            "type": "integer"
+          }
+        },
+        "required": ["id", "hotel", "fecha_inicio", "fecha_fin", "tipo_habitacion", "estado", "num_huespedes"]
+      }
+    }
+  }
+}

@@ -1,0 +1,61 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "API de Reservas Hotel Paraíso",
+      "description": "API para gestionar las reservas en el Hotel Paraíso",
+      "version": "1.0.0"
+    },
+    "paths": {
+      "/api/reservas": {
+        "post": {
+          "summary": "Crear una nueva reserva",
+          "operationId": "crearReserva",
+          "requestBody": {
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "./schema/schema.json"
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "Reserva creada con éxito",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "./schema/schema.json"
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Datos incompletos o incorrectos"
+            }
+          }
+        },
+        "get": {
+          "summary": "Obtener todas las reservas",
+          "operationId": "obtenerReservas",
+          "responses": {
+            "200": {
+              "description": "Lista de reservas",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "$ref": "./schema/schema.json"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
